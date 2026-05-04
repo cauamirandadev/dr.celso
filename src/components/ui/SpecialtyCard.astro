@@ -1,0 +1,94 @@
+---
+interface Props {
+  number: string;
+  name: string;
+  description: string;
+  iconPath?: string;
+  imageSrc?: string;
+  theme?: 'dark' | 'light';
+}
+
+const { number, name, description, iconPath, imageSrc, theme = 'dark' } = Astro.props;
+const isLight = theme === 'light';
+---
+
+<article class:list={[
+  'group flex flex-col rounded-card border overflow-hidden transition-all duration-300 ease-out hover:-translate-y-1 hover:border-accent hover:shadow-card-hover',
+  isLight
+    ? 'bg-light-surface border-border-light'
+    : 'bg-primary-light border-border',
+]}>
+
+  <!-- Banner visual: imagem ou gradiente + ícone -->
+  <div class="relative aspect-[16/9] overflow-hidden">
+    {imageSrc ? (
+      <!-- Imagem de especialidade -->
+      <img
+        src={imageSrc}
+        alt=""
+        class="absolute inset-0 w-full h-full object-cover transition-transform duration-500 ease-out group-hover:scale-105"
+        loading="lazy"
+        aria-hidden="true"
+      />
+      <!-- Overlay escuro sutil para contraste -->
+      <div class="absolute inset-0 bg-gradient-to-t from-primary/60 via-primary/20 to-transparent"></div>
+    ) : (
+      <!-- Fallback: gradiente + ícone -->
+      <div class="absolute inset-0 bg-gradient-to-br from-primary via-primary-light to-accent/20 flex items-center justify-center">
+        {iconPath ? (
+          <svg
+            class="w-12 h-12 text-accent/70 relative z-10"
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="1.5"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            aria-hidden="true"
+          >
+            <path d={iconPath} />
+          </svg>
+        ) : (
+          <svg
+            class="w-12 h-12 text-accent/70 relative z-10"
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="1.5"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            aria-hidden="true"
+          >
+            <rect x="9" y="2" width="6" height="20" rx="2" />
+            <rect x="2" y="9" width="20" height="6" rx="2" />
+          </svg>
+        )}
+      </div>
+    )}
+
+    <!-- Número decorativo de fundo -->
+    <span
+      class="absolute right-4 bottom-1 font-display font-bold text-[4rem] leading-none text-cream/10 select-none pointer-events-none z-10"
+      aria-hidden="true"
+    >
+      {number}
+    </span>
+
+    <!-- Linha dourada inferior -->
+    <div class="absolute bottom-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-accent/40 to-transparent z-10"></div>
+  </div>
+
+  <!-- Conteúdo -->
+  <div class="flex flex-col gap-3 p-6 md:p-8">
+    <div class="w-8 h-px bg-accent"></div>
+    <h3 class:list={['font-display font-semibold text-lg heading-display', isLight ? 'text-on-light' : 'text-cream']}>
+      {name}
+    </h3>
+    <p class:list={['text-sm leading-relaxed', isLight ? 'text-on-light-muted' : 'text-cream-muted']}>
+      {description}
+    </p>
+  </div>
+
+</article>

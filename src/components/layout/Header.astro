@@ -1,0 +1,133 @@
+---
+interface Props {
+  currentPath: string;
+}
+
+const { currentPath } = Astro.props;
+
+const navLinks = [
+  { href: '/', label: 'Início' },
+  { href: '/sobre', label: 'Sobre' },
+  { href: '/especialidades', label: 'Especialidades' },
+  { href: '/agendar', label: 'Agendar' },
+  { href: '/contato', label: 'Contato' },
+];
+
+function isActive(href: string): boolean {
+  if (href === '/') return currentPath === '/';
+  return currentPath.startsWith(href);
+}
+---
+
+<header class="sticky top-0 z-50 bg-primary-light border-b border-border" role="banner">
+  <div class="container">
+    <div class="flex items-center justify-between h-16 md:h-20">
+
+      <!-- Logo + tagline -->
+      <a
+        href="/"
+        class="flex items-center gap-3 rounded focus-visible:outline focus-visible:outline-2 focus-visible:outline-accent focus-visible:outline-offset-2"
+        aria-label="Dr. Celso Pintinha — página inicial"
+      >
+        <img
+          src="/assets/doctor/logo-sem-fundo.png"
+          alt="Dr. Celso Pintinha"
+          class="h-14 w-auto drop-shadow-[0_0_2px_rgba(245,241,232,0.4)]"
+          loading="eager"
+        />
+      </a>
+
+      <!-- Navegação desktop -->
+      <nav class="hidden md:flex items-center gap-1" aria-label="Navegação principal">
+        {navLinks.map(({ href, label }) => (
+          <a
+            href={href}
+            aria-current={isActive(href) ? 'page' : undefined}
+            class:list={[
+              'px-3 py-2 rounded text-sm font-medium transition-all duration-200 focus-visible:outline focus-visible:outline-2 focus-visible:outline-accent focus-visible:outline-offset-2',
+              isActive(href)
+                ? 'text-accent font-semibold'
+                : 'text-cream-muted hover:text-cream hover:bg-surface-elev',
+            ]}
+          >
+            {label}
+          </a>
+        ))}
+      </nav>
+
+      <div class="flex items-center gap-3">
+        <a
+          href="/agendar"
+          class="hidden md:inline-flex items-center px-5 py-2.5 bg-accent text-primary text-sm font-semibold rounded-button hover:bg-accent-light active:bg-accent-dark transition-all duration-200 focus-visible:outline focus-visible:outline-2 focus-visible:outline-accent focus-visible:outline-offset-2"
+        >
+          Agendar Consulta
+        </a>
+
+        <!-- Hamburger mobile -->
+        <button
+          id="menu-toggle"
+          type="button"
+          class="md:hidden flex flex-col justify-center items-center w-10 h-10 gap-1.5 rounded focus-visible:outline focus-visible:outline-2 focus-visible:outline-accent"
+          aria-expanded="false"
+          aria-controls="mobile-menu"
+          aria-label="Abrir menu de navegação"
+        >
+          <span class="block w-6 h-0.5 bg-cream transition-all duration-200 origin-center"></span>
+          <span class="block w-6 h-0.5 bg-cream transition-all duration-200 origin-center"></span>
+          <span class="block w-6 h-0.5 bg-cream transition-all duration-200 origin-center"></span>
+        </button>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- Menu mobile -->
+  <div
+    id="mobile-menu"
+    hidden
+    class="md:hidden border-t border-border bg-primary-light"
+    role="navigation"
+    aria-label="Menu mobile"
+  >
+    <div class="container py-4 flex flex-col gap-1">
+      {navLinks.map(({ href, label }) => (
+        <a
+          href={href}
+          aria-current={isActive(href) ? 'page' : undefined}
+          class:list={[
+            'px-4 py-3 rounded-button text-sm font-medium transition-all duration-200 focus-visible:outline focus-visible:outline-2 focus-visible:outline-accent',
+            isActive(href)
+              ? 'text-accent bg-surface-elev font-semibold'
+              : 'text-cream-muted hover:text-cream hover:bg-surface-elev',
+          ]}
+        >
+          {label}
+        </a>
+      ))}
+      <a
+        href="/agendar"
+        class="mt-2 px-4 py-3 bg-accent text-primary text-sm font-semibold rounded-button text-center hover:bg-accent-light transition-all duration-200 focus-visible:outline focus-visible:outline-2 focus-visible:outline-accent"
+      >
+        Agendar Consulta
+      </a>
+    </div>
+  </div>
+</header>
+
+<script>
+  const toggle = document.getElementById('menu-toggle') as HTMLButtonElement | null;
+  const menu = document.getElementById('mobile-menu');
+
+  toggle?.addEventListener('click', () => {
+    const isHidden = menu?.hasAttribute('hidden');
+    if (isHidden) {
+      menu?.removeAttribute('hidden');
+      toggle.setAttribute('aria-expanded', 'true');
+      toggle.setAttribute('aria-label', 'Fechar menu de navegação');
+    } else {
+      menu?.setAttribute('hidden', '');
+      toggle.setAttribute('aria-expanded', 'false');
+      toggle.setAttribute('aria-label', 'Abrir menu de navegação');
+    }
+  });
+</script>

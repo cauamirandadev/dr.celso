@@ -1,0 +1,21 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Hero from '../components/sections/Hero.astro';
+import SpecialtiesPreview from '../components/sections/SpecialtiesPreview.astro';
+import LocationsPreview from '../components/sections/LocationsPreview.astro';
+import AboutTeaser from '../components/sections/AboutTeaser.astro';
+import SectionDivider from '../components/ui/SectionDivider.astro';
+---
+
+<BaseLayout
+  title="Dr. Celso Pintinha — Ortopedista em Uberaba"
+  description="Ortopedista e traumatologista em Uberaba. 20 anos de prática. Atendimento no Hospital São Marcos e Instituto Sem Dor."
+>
+  <Hero />
+  <SectionDivider variant="dark-to-dark" accent={true} />
+  <SpecialtiesPreview />
+  <SectionDivider variant="dark-to-light" accent={true} />
+  <LocationsPreview />
+  <SectionDivider variant="dark-to-light" accent={true} />
+  <AboutTeaser />
+</BaseLayout>

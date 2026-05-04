@@ -1,0 +1,39 @@
+---
+interface Props {
+  href: string;
+  label: string;
+  variant?: 'primary' | 'secondary' | 'ghost';
+  external?: boolean;
+  class?: string;
+}
+
+const {
+  href,
+  label,
+  variant = 'primary',
+  external = false,
+  class: className,
+} = Astro.props;
+
+const base =
+  'inline-flex items-center justify-center gap-2 px-6 py-3 text-sm font-semibold rounded-button transition-all duration-200 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2';
+
+const variants: Record<string, string> = {
+  primary:
+    'bg-accent text-primary hover:bg-accent-light active:bg-accent-dark focus-visible:outline-accent',
+  secondary:
+    'border border-accent text-accent bg-transparent hover:bg-accent/10 active:bg-accent/20 focus-visible:outline-accent',
+  ghost:
+    'text-accent hover:bg-accent/10 active:bg-accent/20 focus-visible:outline-accent',
+};
+---
+
+<a
+  href={href}
+  class:list={[base, variants[variant], className]}
+  {...external ? { target: '_blank', rel: 'noopener noreferrer' } : {}}
+>
+  {label}
+  {external && <span class="sr-only">(abre em nova aba)</span>}
+  <slot />
+</a>

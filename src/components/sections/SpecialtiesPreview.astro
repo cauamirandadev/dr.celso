@@ -1,0 +1,79 @@
+---
+import SectionTitle from '../ui/SectionTitle.astro';
+import SpecialtyCard from '../ui/SpecialtyCard.astro';
+import CTAButton from '../ui/CTAButton.astro';
+import FadeIn from '../ui/FadeIn.astro';
+
+const specialties = [
+  {
+    number: '01',
+    name: 'Cirurgia de Joelho',
+    description: 'Tratamento cirúrgico de lesões do joelho. Técnica aberta e artroscópica.',
+    imageSrc: '/assets/procedures/cirurgia-joelho.png',
+    iconPath: 'M12 2C9.8 2 8 3.8 8 6v6l-2 3h12l-2-3V6c0-2.2-1.8-4-4-4zM10 18h4M9 21h6',
+  },
+  {
+    number: '02',
+    name: 'Prótese de Quadril',
+    description: 'Artroplastia total e parcial. Recuperação de mobilidade com implante moderno.',
+    imageSrc: '/assets/procedures/protese-quadril.png',
+    iconPath: 'M12 3a3 3 0 1 0 0 6 3 3 0 0 0 0-6zM6 13c0-2.2 2.7-4 6-4s6 1.8 6 4v2H6v-2zM8 19l2 2 4-4',
+  },
+  {
+    number: '03',
+    name: 'Prótese de Joelho',
+    description: 'Substituição total ou parcial da articulação. Indicada para artrose avançada.',
+    imageSrc: '/assets/procedures/protese-joelho.png',
+    iconPath: 'M12 2C9.8 2 8 3.8 8 6v6l-2 3h12l-2-3V6c0-2.2-1.8-4-4-4zM10 18h4M8 21c0 1.1 1.8 2 4 2s4-.9 4-2',
+  },
+  {
+    number: '04',
+    name: 'Cirurgia de Ligamento',
+    description: 'Reconstrução de ligamentos do joelho. LCA, LCP e ligamentos colaterais.',
+    imageSrc: '/assets/procedures/cirurgia-ligamento.png',
+    iconPath: 'M6 3l12 18M18 3L6 21M12 3v18',
+  },
+  {
+    number: '05',
+    name: 'Artroscopia de Joelho',
+    description: 'Cirurgia minimamente invasiva por câmera articular. Menor cicatriz e recuperação.',
+    imageSrc: '/assets/procedures/artroscopia-joelho.png',
+    iconPath: 'M15 10l-4.5 4.5M3 3l18 18M17 17H9a2 2 0 0 1-2-2V9M21 15V7a2 2 0 0 0-2-2h-8',
+  },
+  {
+    number: '06',
+    name: 'Traumatologia',
+    description: 'Fraturas, luxações e lesões agudas. Atendimento eletivo e de urgência.',
+    imageSrc: '/assets/procedures/traumatologia.png',
+    iconPath: 'M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83',
+  },
+];
+---
+
+<section class="section bg-light-bg [&_.text-cream]:text-on-light [&_.text-cream-muted]:text-on-light-muted" aria-label="Especialidades médicas">
+  <div class="container flex flex-col gap-10 md:gap-12">
+
+    <div class="flex flex-col md:flex-row md:items-end justify-between gap-6">
+      <SectionTitle
+        title="Especialidades"
+        subtitle="Ortopedia e traumatologia com foco em resultado funcional."
+        theme="light"
+      />
+      <CTAButton href="/especialidades" label="Ver todas" variant="ghost" />
+    </div>
+
+    <FadeIn class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6">
+      {specialties.map((s) => (
+        <SpecialtyCard
+          number={s.number}
+          name={s.name}
+          description={s.description}
+          iconPath={s.iconPath}
+          imageSrc={s.imageSrc}
+          theme="light"
+        />
+      ))}
+    </FadeIn>
+
+  </div>
+</section>

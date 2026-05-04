@@ -1,0 +1,27 @@
+---
+interface Props {
+  variant?: 'light-to-dark' | 'dark-to-light' | 'light-to-light' | 'dark-to-dark';
+  accent?: boolean;
+}
+
+const { variant = 'light-to-dark', accent = false } = Astro.props;
+---
+
+<div class="relative h-px overflow-visible flex items-center justify-center" aria-hidden="true">
+  <!-- Linha base -->
+  <div class:list={[
+    'absolute inset-0',
+    variant === 'light-to-dark' || variant === 'light-to-light'
+      ? 'bg-border-light'
+      : 'bg-border',
+  ]}></div>
+
+  {accent && (
+    <!-- Ornamento central dourado -->
+    <span class="relative z-10 flex items-center gap-2 px-4 bg-transparent">
+      <span class="block w-8 h-px bg-accent/60"></span>
+      <span class="block w-1.5 h-1.5 rounded-full bg-accent/80 rotate-45"></span>
+      <span class="block w-8 h-px bg-accent/60"></span>
+    </span>
+  )}
+</div>

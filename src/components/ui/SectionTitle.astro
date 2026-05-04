@@ -1,0 +1,24 @@
+---
+interface Props {
+  title: string;
+  subtitle?: string;
+  align?: 'left' | 'center';
+  as?: 'h1' | 'h2' | 'h3';
+  theme?: 'dark' | 'light';
+}
+
+const { title, subtitle, align = 'left', as: Tag = 'h2', theme = 'dark' } = Astro.props;
+const isLight = theme === 'light';
+---
+
+<div class:list={['flex flex-col gap-3', align === 'center' && 'items-center text-center']}>
+  <div class="w-10 h-px bg-accent opacity-80" aria-hidden="true"></div>
+  <Tag class:list={['font-display text-display-lg heading-display', isLight ? 'text-on-light' : 'text-cream']}>
+    {title}
+  </Tag>
+  {subtitle && (
+    <p class:list={['text-base md:text-lg leading-relaxed max-w-prose', isLight ? 'text-on-light-muted' : 'text-cream-muted']}>
+      {subtitle}
+    </p>
+  )}
+</div>

@@ -1,0 +1,60 @@
+---
+// Banner LGPD — estado persistido em localStorage
+// Mostrado apenas se o usuário ainda não respondeu ao consentimento
+---
+
+<div
+  id="cookie-banner"
+  role="dialog"
+  aria-label="Consentimento de cookies"
+  aria-modal="false"
+  class="fixed bottom-0 left-0 right-0 z-50 bg-secondary text-white px-4 py-4 md:px-8 md:py-5 shadow-[0_-2px_16px_rgba(0,0,0,0.2)]"
+  style="display: none;"
+>
+  <div class="container flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
+    <p class="text-sm text-gray-300 leading-relaxed max-w-prose">
+      Usamos cookies para melhorar sua experiência. Ao continuar, você concorda com nossa{' '}
+      <a
+        href="/privacidade"
+        class="text-white underline underline-offset-2 hover:text-gray-200 focus-visible:outline focus-visible:outline-2 focus-visible:outline-white rounded"
+      >
+        Política de Privacidade
+      </a>.
+    </p>
+    <div class="flex gap-3 flex-shrink-0">
+      <button
+        id="cookie-reject"
+        type="button"
+        class="px-4 py-2 text-sm text-gray-300 border border-white/20 rounded-button hover:border-white hover:text-white transition-all duration-200 focus-visible:outline focus-visible:outline-2 focus-visible:outline-white active:scale-95"
+      >
+        Recusar
+      </button>
+      <button
+        id="cookie-accept"
+        type="button"
+        class="px-5 py-2 text-sm font-medium bg-white text-secondary rounded-button hover:bg-gray-100 active:bg-gray-200 active:scale-95 transition-all duration-200 focus-visible:outline focus-visible:outline-2 focus-visible:outline-white"
+      >
+        Aceitar
+      </button>
+    </div>
+  </div>
+</div>
+
+<script>
+  const STORAGE_KEY = 'cookie_consent';
+  const banner = document.getElementById('cookie-banner');
+
+  if (!localStorage.getItem(STORAGE_KEY)) {
+    if (banner) banner.style.display = 'block';
+  }
+
+  document.getElementById('cookie-accept')?.addEventListener('click', () => {
+    localStorage.setItem(STORAGE_KEY, 'accepted');
+    if (banner) banner.style.display = 'none';
+  });
+
+  document.getElementById('cookie-reject')?.addEventListener('click', () => {
+    localStorage.setItem(STORAGE_KEY, 'rejected');
+    if (banner) banner.style.display = 'none';
+  });
+</script>

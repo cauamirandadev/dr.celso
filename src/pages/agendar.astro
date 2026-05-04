@@ -1,0 +1,25 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import SchedulingLayout from '../components/sections/SchedulingLayout.astro';
+---
+
+<BaseLayout
+  title="Agendar Consulta — Dr. Celso Pintinha"
+  description="Marque sua consulta com o Dr. Celso Pintinha pelo WhatsApp ou Doctoralia. Atendimento no Hospital São Marcos e Instituto Sem Dor, Uberaba."
+>
+  <section class="py-12 md:py-16 bg-primary-light border-b border-border" aria-labelledby="page-heading">
+    <div class="container">
+      <h1
+        id="page-heading"
+        class="font-display text-display-lg text-cream heading-display"
+      >
+        Agendar Consulta
+      </h1>
+      <p class="text-cream-muted mt-3 max-w-prose">
+        WhatsApp ou Doctoralia. A secretária confirma o local e o horário.
+      </p>
+    </div>
+  </section>
+
+  <SchedulingLayout />
+</BaseLayout>

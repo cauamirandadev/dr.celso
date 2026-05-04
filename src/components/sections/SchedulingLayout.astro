@@ -1,0 +1,125 @@
+---
+import SectionTitle from '../ui/SectionTitle.astro';
+import LocationCard from '../ui/LocationCard.astro';
+import WhatsAppButton from '../ui/WhatsAppButton.astro';
+import CTAButton from '../ui/CTAButton.astro';
+import FadeIn from '../ui/FadeIn.astro';
+
+const locations = [
+  {
+    name: 'Hospital São Marcos',
+    address: 'Av. Santos Dumont, 2191 - Vila Santa Maria, Uberaba - MG, 38050-400',
+    schedule: [
+      '[PENDENTE — ex: Segunda e Quarta, 14h às 18h]',
+      '[PENDENTE — ex: Sexta, 08h às 12h]',
+    ],
+    phone: '[PENDENTE — telefone fixo]',
+    mapsUrl: 'https://maps.google.com/?q=Av.+Santos+Dumont,+2191,+Vila+Santa+Maria,+Uberaba,+MG',
+    imageUrl: '/assets/locations/hospital-sao-marcos.jpeg',
+    whatsappPhone: '5534992206100',
+  },
+  {
+    name: 'Instituto Sem Dor',
+    address: 'Av. Santos Dumont, 2335 - Vila Santa Maria, Uberaba - MG, 38050-400',
+    schedule: [
+      '[PENDENTE — ex: Terça e Quinta, 08h às 12h]',
+    ],
+    phone: '[PENDENTE — telefone fixo]',
+    mapsUrl: 'https://maps.google.com/?q=Av.+Santos+Dumont,+2335,+Vila+Santa+Maria,+Uberaba,+MG',
+    imageUrl: '/assets/locations/instituto-sem-dor.webp',
+    whatsappPhone: '5534992206100',
+  },
+];
+---
+
+<div class="flex flex-col">
+
+  <!-- Locais de atendimento — cream -->
+  <section class="section bg-light-bg [&_.text-cream]:text-on-light [&_.text-cream-muted]:text-on-light-muted" aria-label="Locais de atendimento do Dr. Celso Pintinha">
+    <div class="container flex flex-col gap-10 md:gap-12">
+
+      <SectionTitle
+        title="Onde Atendemos"
+        subtitle="Dois locais em Uberaba. Agendamento centralizado pelo WhatsApp da secretária."
+        theme="light"
+      />
+
+      <FadeIn class="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8">
+        {locations.map((loc) => (
+          <LocationCard
+            name={loc.name}
+            address={loc.address}
+            schedule={loc.schedule}
+            phone={loc.phone}
+            mapsUrl={loc.mapsUrl}
+            imageUrl={loc.imageUrl}
+            whatsappPhone={loc.whatsappPhone}
+            theme="light"
+          />
+        ))}
+      </FadeIn>
+
+      <p class="text-sm text-on-light-muted text-center">
+        Os dois locais ficam na mesma avenida, a poucos passos um do outro.
+      </p>
+
+    </div>
+  </section>
+
+  <!-- Como agendar -->
+  <section class="section bg-primary-light" aria-label="Como agendar consulta">
+    <div class="container flex flex-col gap-10 md:gap-12">
+
+      <SectionTitle
+        title="Como Agendar"
+        subtitle="Escolha o canal. A secretária confirma o local, o dia e o horário."
+      />
+
+      <FadeIn class="grid grid-cols-1 sm:grid-cols-2 gap-6 md:gap-8 max-w-2xl">
+
+        <div class="flex flex-col gap-4 p-6 md:p-8 bg-surface-elev border border-border rounded-card">
+          <span class="text-xs font-semibold text-accent tracking-widest uppercase">Opção 01</span>
+          <div class="flex flex-col gap-1">
+            <h3 class="font-body text-base font-semibold text-cream">WhatsApp</h3>
+            <p class="text-sm text-cream-muted leading-relaxed">
+              Mande mensagem para a secretária. Ela agenda nos dois locais.
+            </p>
+          </div>
+          <WhatsAppButton
+            phone="5534992206100"
+            message="Olá! Gostaria de agendar uma consulta com o Dr. Celso Pintinha."
+            variant="inline"
+            label="Abrir WhatsApp"
+          />
+        </div>
+
+        <div class="flex flex-col gap-4 p-6 md:p-8 bg-surface-elev border border-border rounded-card">
+          <span class="text-xs font-semibold text-accent tracking-widest uppercase">Opção 02</span>
+          <div class="flex flex-col gap-1">
+            <h3 class="font-body text-base font-semibold text-cream">Doctoralia</h3>
+            <p class="text-sm text-cream-muted leading-relaxed">
+              Escolha data e horário pelo app ou site da Doctoralia.
+            </p>
+          </div>
+          <CTAButton
+            href="https://www.doctoralia.com.br/celso-pintinha/ortopedista-traumatologista/uberaba#address-id=1381834&is-online-only=false&filters%5Bspecializations%5D%5B%5D=67"
+            label="Agendar pelo Doctoralia"
+            variant="secondary"
+            external={true}
+          />
+        </div>
+
+      </FadeIn>
+
+      <!-- Convênios -->
+      <div class="pt-2 border-t border-border max-w-2xl">
+        <p class="text-sm text-cream-muted">
+          <strong class="font-medium text-cream">Convênios:</strong>{' '}
+          [PENDENTE — lista de convênios atendidos]
+        </p>
+      </div>
+
+    </div>
+  </section>
+
+</div>

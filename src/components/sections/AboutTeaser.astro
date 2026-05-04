@@ -1,0 +1,82 @@
+---
+import CTAButton from '../ui/CTAButton.astro';
+---
+
+<section
+  class="relative bg-primary overflow-hidden min-h-[500px] md:min-h-[600px]"
+  aria-label="Sobre o Dr. Celso Pintinha"
+>
+  <!-- Banner full background -->
+  <div class="absolute inset-0" aria-hidden="true">
+    <img
+      src="/assets/doctor/banner-dr-celso-perfil.jpeg"
+      alt=""
+      class="w-full h-full object-cover object-[30%_15%]"
+      loading="lazy"
+    />
+    <!-- Overlay gradiente: transparente à esquerda (mostra o médico), escuro à direita (background do texto) -->
+    <!-- Mobile: gradiente de cima pra baixo -->
+    <div class="absolute inset-0 bg-gradient-to-b from-transparent via-primary/40 to-primary/95 md:bg-gradient-to-r md:from-transparent md:via-primary/40 md:to-primary/95"></div>
+  </div>
+
+  <!-- Conteúdo (texto à direita) -->
+  <div class="relative z-10 container py-16 md:py-24 flex items-end md:items-center min-h-[500px] md:min-h-[600px]">
+    <div class="ml-auto max-w-md md:max-w-lg flex flex-col gap-6">
+
+      <div class="flex flex-col gap-2">
+        <p class="text-accent text-xs font-display font-semibold uppercase tracking-[0.2em]">Sobre</p>
+        <h2 class="font-display font-bold text-display-md text-cream heading-display">
+          Dr. Celso Pintinha
+        </h2>
+      </div>
+
+      <div class="flex flex-col gap-3 text-cream/80 text-base leading-relaxed">
+        <p>
+          Ortopedista e traumatologista com mais de 20 anos de prática clínica em Uberaba.
+        </p>
+        <p>
+          Especializado em cirurgia de joelho, prótese de quadril e artroscopia.
+          CRM-MG <span class="font-semibold text-cream">33.379</span>.
+        </p>
+      </div>
+
+      <ul class="flex flex-col gap-2" aria-label="Credenciais">
+        <li class="flex items-center gap-2 text-sm text-cream/70">
+          <svg
+            class="w-4 h-4 text-accent flex-shrink-0"
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2.5"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            aria-hidden="true"
+          >
+            <polyline points="20 6 9 17 4 12" />
+          </svg>
+          Membro da SBOT — Sociedade Brasileira de Ortopedia e Traumatologia
+        </li>
+        <li class="flex items-center gap-2 text-sm text-cream/70">
+          <svg
+            class="w-4 h-4 text-accent flex-shrink-0"
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2.5"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            aria-hidden="true"
+          >
+            <polyline points="20 6 9 17 4 12" />
+          </svg>
+          [PENDENTE — formação e residência médica]
+        </li>
+      </ul>
+
+      <CTAButton href="/sobre" label="Trajetória completa" variant="secondary" />
+
+    </div>
+  </div>
+</section>

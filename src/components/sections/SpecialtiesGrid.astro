@@ -1,0 +1,405 @@
+---
+import SectionTitle from '../ui/SectionTitle.astro';
+import CTAButton from '../ui/CTAButton.astro';
+
+const specialties = [
+  {
+    number: '01',
+    name: 'Cirurgia de Joelho',
+    description: 'Tratamento cirúrgico de lesões do joelho, incluindo técnica aberta e artroscópica. Indicada para lesões meniscais, instabilidade articular e fraturas intra-articulares.',
+    imageSrc: '/assets/procedures/cirurgia-joelho.png',
+  },
+  {
+    number: '02',
+    name: 'Prótese de Quadril',
+    description: 'Artroplastia total e parcial do quadril. Recuperação de mobilidade com implantes modernos para artrose avançada, fraturas do colo femoral e necrose avascular.',
+    imageSrc: '/assets/procedures/protese-quadril.png',
+  },
+  {
+    number: '03',
+    name: 'Prótese de Joelho',
+    description: 'Substituição total ou parcial da articulação do joelho. Indicada para artrose avançada com dor refratária ao tratamento conservador.',
+    imageSrc: '/assets/procedures/protese-joelho.png',
+  },
+  {
+    number: '04',
+    name: 'Cirurgia de Ligamento',
+    description: 'Reconstrução de ligamentos do joelho — LCA, LCP e ligamentos colaterais. Técnica artroscópica com enxerto autólogo ou homólogo.',
+    imageSrc: '/assets/procedures/cirurgia-ligamento.png',
+  },
+  {
+    number: '05',
+    name: 'Artroscopia de Joelho',
+    description: 'Cirurgia minimamente invasiva por câmera articular. Menor incisão, menos dor pós-operatória e recuperação mais rápida.',
+    imageSrc: '/assets/procedures/artroscopia-joelho.png',
+  },
+  {
+    number: '06',
+    name: 'Traumatologia',
+    description: 'Diagnóstico e tratamento de fraturas, luxações e lesões agudas do aparelho locomotor. Atendimento eletivo e de urgência.',
+    imageSrc: '/assets/procedures/traumatologia.png',
+  },
+  {
+    number: '07',
+    name: 'Ortopedia Geral',
+    description: 'Avaliação e tratamento de doenças musculoesqueléticas. Acompanhamento clínico em adultos e idosos, orientação conservadora e cirúrgica.',
+    imageSrc: '/assets/procedures/ortopedia-geral.png',
+  },
+];
+
+const panelCount = specialties.length;
+---
+
+<!-- Cabeçalho da página — dark -->
+<section class="py-12 md:py-16 bg-primary border-b border-border" aria-labelledby="especialidades-heading">
+  <div class="container">
+    <SectionTitle
+      title="Especialidades"
+      subtitle="Ortopedia e traumatologia. 20 anos de experiência clínica e cirúrgica em Uberaba."
+      as="h1"
+    />
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════ -->
+<!-- MOBILE: Cards verticais (< md)                 -->
+<!-- ═══════════════════════════════════════════════ -->
+<section
+  class="md:hidden py-12 bg-primary"
+  aria-label="Lista de especialidades"
+>
+  <div class="container flex flex-col gap-6">
+    {specialties.map((s) => (
+      <article class="flex flex-col rounded-card border border-border overflow-hidden bg-primary-light">
+        <div class="relative aspect-[16/9] overflow-hidden">
+          <img
+            src={s.imageSrc}
+            alt=""
+            class="absolute inset-0 w-full h-full object-cover"
+            loading="lazy"
+            aria-hidden="true"
+          />
+          <div class="absolute inset-0 bg-gradient-to-t from-primary/60 via-primary/20 to-transparent"></div>
+          <span
+            class="absolute right-4 bottom-1 font-display font-bold text-[3rem] leading-none text-cream/10 select-none pointer-events-none"
+            aria-hidden="true"
+          >
+            {s.number}
+          </span>
+        </div>
+        <div class="flex flex-col gap-3 p-6">
+          <div class="w-8 h-px bg-accent"></div>
+          <h2 class="font-display font-semibold text-lg text-cream heading-display">{s.name}</h2>
+          <p class="text-sm text-cream-muted leading-relaxed">{s.description}</p>
+        </div>
+      </article>
+    ))}
+
+    <div class="pt-4">
+      <CTAButton href="/agendar" label="Agendar consulta" variant="primary" />
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════ -->
+<!-- DESKTOP: Scroll-driven horizontal (≥ md)       -->
+<!-- ═══════════════════════════════════════════════ -->
+<section
+  class="hidden md:block relative bg-primary"
+  id="specialties-section"
+  aria-label="Especialidades — navegação horizontal"
+  style={`height: ${panelCount * 100}vh;`}
+>
+  <div class="sticky top-0 h-screen overflow-hidden flex items-center">
+
+    <!-- Track horizontal -->
+    <div
+      class="specialties-track flex will-change-transform"
+      id="specialties-track"
+      role="list"
+    >
+      {specialties.map((s, i) => (
+        <div
+          class="panel flex-shrink-0 w-screen h-screen flex items-center justify-center px-8 lg:px-16"
+          role="listitem"
+          data-panel-index={i}
+          tabindex="0"
+          aria-label={`Especialidade ${s.number}: ${s.name}`}
+        >
+          <div class="container flex items-center gap-8 lg:gap-16 max-w-content">
+
+            <!-- Imagem -->
+            <div class="w-1/2 flex-shrink-0">
+              <div class="relative rounded-card overflow-hidden aspect-[4/3] shadow-card panel-image">
+                <img
+                  src={s.imageSrc}
+                  alt=""
+                  class="absolute inset-0 w-full h-full object-cover"
+                  loading="lazy"
+                  aria-hidden="true"
+                />
+                <div class="absolute inset-0 bg-gradient-to-t from-primary/40 via-transparent to-transparent"></div>
+              </div>
+            </div>
+
+            <!-- Texto -->
+            <div class="w-1/2 flex flex-col gap-6 panel-content">
+              <!-- Número decorativo -->
+              <span
+                class="font-display font-bold text-[6rem] lg:text-[8rem] leading-none text-accent/10 select-none"
+                aria-hidden="true"
+              >
+                {s.number}
+              </span>
+
+              <div class="flex flex-col gap-4 -mt-8">
+                <div class="w-12 h-px bg-accent"></div>
+                <h2 class="font-display font-bold text-display-md text-cream heading-display">
+                  {s.name}
+                </h2>
+                <p class="text-cream/70 text-base leading-relaxed max-w-prose">
+                  {s.description}
+                </p>
+              </div>
+
+              <!-- CTA no último painel -->
+              {i === specialties.length - 1 && (
+                <div class="pt-4">
+                  <CTAButton href="/agendar" label="Agendar consulta" variant="primary" />
+                </div>
+              )}
+            </div>
+
+          </div>
+        </div>
+      ))}
+    </div>
+
+    <!-- Indicador de progresso -->
+    <div class="absolute bottom-8 left-1/2 -translate-x-1/2 flex items-center gap-3 z-20" id="progress-dots">
+      {specialties.map((s, i) => (
+        <button
+          class="dot w-2.5 h-2.5 rounded-full bg-cream/20 transition-all duration-300 hover:bg-cream/40 focus-visible:outline focus-visible:outline-2 focus-visible:outline-accent"
+          data-dot-index={i}
+          aria-label={`Ir para ${s.name}`}
+          type="button"
+        />
+      ))}
+    </div>
+
+    <!-- Contador de painel -->
+    <div class="absolute bottom-8 right-8 text-cream/30 font-display text-sm tracking-widest z-20" id="panel-counter">
+      <span id="panel-current">01</span>
+      <span class="text-accent/40">/</span>
+      <span>{String(panelCount).padStart(2, '0')}</span>
+    </div>
+
+    <!-- Hint de scroll (aparece só no primeiro painel) -->
+    <div class="absolute bottom-8 left-8 flex items-center gap-2 text-cream/30 text-xs z-20 scroll-hint" id="scroll-hint">
+      <svg class="w-4 h-4 animate-bounce" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M12 5v14M5 12l7 7 7-7" />
+      </svg>
+      <span class="font-display uppercase tracking-widest">Scroll para navegar</span>
+    </div>
+
+  </div>
+</section>
+
+<style>
+  .specialties-track {
+    transition: transform 80ms cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  }
+
+  .panel-image,
+  .panel-content {
+    transition: opacity 400ms ease-out, transform 400ms ease-out;
+  }
+
+  .panel[data-active="false"] .panel-image {
+    opacity: 0.3;
+    transform: scale(0.92);
+  }
+
+  .panel[data-active="false"] .panel-content {
+    opacity: 0.2;
+    transform: translateX(24px);
+  }
+
+  .panel[data-active="true"] .panel-image {
+    opacity: 1;
+    transform: scale(1);
+  }
+
+  .panel[data-active="true"] .panel-content {
+    opacity: 1;
+    transform: translateX(0);
+  }
+
+  .dot[data-active="true"] {
+    background-color: var(--color-accent, #C9A961);
+    transform: scale(1.4);
+  }
+
+  .scroll-hint {
+    transition: opacity 400ms ease-out;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .specialties-track {
+      transition: none;
+    }
+    .panel-image,
+    .panel-content {
+      transition: none;
+    }
+    .scroll-hint svg {
+      animation: none;
+    }
+  }
+</style>
+
+<script>
+  function initHorizontalScroll() {
+    const section = document.getElementById('specialties-section');
+    const track = document.getElementById('specialties-track');
+    const dots = document.querySelectorAll<HTMLButtonElement>('[data-dot-index]');
+    const counterCurrent = document.getElementById('panel-current');
+    const scrollHint = document.getElementById('scroll-hint');
+
+    if (!section || !track) return;
+
+    const panels = track.querySelectorAll<HTMLElement>('.panel');
+    const panelCount = panels.length;
+
+    if (panelCount === 0) return;
+
+    let ticking = false;
+    let currentIndex = 0;
+    let snapTimeout: ReturnType<typeof setTimeout> | null = null;
+    let isSnapping = false;
+
+    // ─── Core position calculation ───
+    function updatePosition() {
+      const rect = section.getBoundingClientRect();
+      const sectionTop = -rect.top;
+      const scrollRange = section.offsetHeight - window.innerHeight;
+
+      if (scrollRange <= 0) return;
+
+      const progress = Math.max(0, Math.min(1, sectionTop / scrollRange));
+      const maxTranslate = (panelCount - 1) * window.innerWidth;
+      const translateX = progress * maxTranslate;
+
+      track.style.transform = `translateX(-${translateX}px)`;
+
+      // Determine active panel
+      const rawIndex = progress * (panelCount - 1);
+      const activeIndex = Math.round(rawIndex);
+
+      if (activeIndex !== currentIndex) {
+        currentIndex = activeIndex;
+      }
+
+      // Update panel states
+      panels.forEach((panel, i) => {
+        const isActive = i === activeIndex;
+        panel.setAttribute('data-active', String(isActive));
+      });
+
+      // Update dots
+      dots.forEach((dot, i) => {
+        dot.setAttribute('data-active', String(i === activeIndex));
+      });
+
+      // Update counter
+      if (counterCurrent) {
+        counterCurrent.textContent = String(activeIndex + 1).padStart(2, '0');
+      }
+
+      // Hide scroll hint after first panel
+      if (scrollHint) {
+        scrollHint.style.opacity = progress < 0.05 ? '1' : '0';
+      }
+
+      ticking = false;
+    }
+
+    // ─── Snap on scroll stop ───
+    function scheduleSnap() {
+      if (snapTimeout) clearTimeout(snapTimeout);
+      snapTimeout = setTimeout(() => {
+        if (isSnapping) return;
+        snapToPanel(currentIndex);
+      }, 150);
+    }
+
+    function snapToPanel(index: number) {
+      const scrollRange = section.offsetHeight - window.innerHeight;
+      if (scrollRange <= 0) return;
+
+      const sectionTop = section.getBoundingClientRect().top + window.scrollY;
+      const targetProgress = index / (panelCount - 1);
+      const targetScroll = sectionTop + targetProgress * scrollRange;
+
+      isSnapping = true;
+      window.scrollTo({ top: targetScroll, behavior: 'smooth' });
+
+      // Release snap lock after animation
+      setTimeout(() => { isSnapping = false; }, 600);
+    }
+
+    // ─── Dot click navigation ───
+    dots.forEach((dot, i) => {
+      dot.addEventListener('click', () => {
+        snapToPanel(i);
+      });
+    });
+
+    // ─── Keyboard navigation ───
+    panels.forEach((panel) => {
+      panel.addEventListener('focus', () => {
+        const index = Number(panel.dataset.panelIndex);
+        if (!isNaN(index)) {
+          snapToPanel(index);
+        }
+      });
+    });
+
+    // ─── Scroll listener ───
+    function onScroll() {
+      if (!ticking) {
+        requestAnimationFrame(updatePosition);
+        ticking = true;
+      }
+      if (!isSnapping) {
+        scheduleSnap();
+      }
+    }
+
+    window.addEventListener('scroll', onScroll, { passive: true });
+
+    // ─── Resize handler ───
+    let resizeTimeout: ReturnType<typeof setTimeout> | null = null;
+    window.addEventListener('resize', () => {
+      if (resizeTimeout) clearTimeout(resizeTimeout);
+      resizeTimeout = setTimeout(() => {
+        updatePosition();
+        snapToPanel(currentIndex);
+      }, 200);
+    });
+
+    // ─── Initial state ───
+    updatePosition();
+    panels.forEach((panel, i) => {
+      panel.setAttribute('data-active', i === 0 ? 'true' : 'false');
+    });
+  }
+
+  // Init
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initHorizontalScroll);
+  } else {
+    initHorizontalScroll();
+  }
+  document.addEventListener('astro:page-load', initHorizontalScroll);
+</script>

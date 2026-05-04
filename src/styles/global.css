@@ -1,0 +1,78 @@
+/* Google Fonts — Montserrat + Questrial */
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&family=Questrial&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --color-primary: #0F2841;
+    --color-primary-light: #1A3A5C;
+    --color-primary-dark: #0A1E33;
+    --color-accent: #C9A961;
+    --color-accent-light: #D4B97A;
+    --color-cream: #F5F1E8;
+    --color-cream-muted: #C9C2B0;
+    --color-border: rgba(245, 241, 232, 0.15);
+    --color-border-light: rgba(26, 39, 66, 0.12);
+    --color-surface-elev: rgba(245, 241, 232, 0.06);
+    --color-light-bg: #FAF7EF;
+    --color-light-surface: #F0EBE0;
+    --color-on-light: #1A2742;
+    --color-on-light-muted: #5A6478;
+    --color-success: #4ADE80;
+    --color-error: #DC2626;
+
+    --font-display: 'Montserrat', system-ui, sans-serif;
+    --font-body: 'Questrial', system-ui, sans-serif;
+
+    --transition-base: 200ms cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  html {
+    font-family: var(--font-body);
+    color: var(--color-cream);
+    background-color: var(--color-primary);
+    scroll-behavior: smooth;
+    -webkit-text-size-adjust: 100%;
+  }
+
+  body {
+    @apply text-cream bg-primary antialiased;
+    font-size: 1rem;
+    line-height: 1.6;
+  }
+
+  *:focus-visible {
+    outline: 2px solid var(--color-accent);
+    outline-offset: 3px;
+    border-radius: 3px;
+  }
+
+  *:focus:not(:focus-visible) {
+    outline: none;
+  }
+
+  img, video {
+    max-width: 100%;
+    height: auto;
+  }
+}
+
+@layer components {
+  .section {
+    @apply py-20 md:py-32;
+  }
+
+  .container {
+    @apply mx-auto px-4 md:px-8 max-w-content;
+  }
+
+  .heading-display {
+    font-family: var(--font-display);
+    font-weight: 700;
+    letter-spacing: -0.01em;
+    font-feature-settings: 'kern' 1, 'liga' 1;
+  }
+}

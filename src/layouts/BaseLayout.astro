@@ -1,0 +1,98 @@
+---
+import '../styles/global.css';
+import { ViewTransitions } from 'astro:transitions';
+import Header from '../components/layout/Header.astro';
+import Footer from '../components/layout/Footer.astro';
+import WhatsAppButton from '../components/ui/WhatsAppButton.astro';
+import CookieConsent from '../components/ui/CookieConsent.astro';
+
+interface Props {
+  title: string;
+  description: string;
+  ogImage?: string;
+}
+
+const { title, description, ogImage = '/assets/og-image.png' } = Astro.props;
+const canonicalURL = new URL(Astro.url.pathname, Astro.site);
+
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'Physician',
+  name: 'Dr. Celso Pintinha',
+  medicalSpecialty: ['Orthopedic Surgery', 'Traumatology'],
+  description: 'Ortopedista e traumatologista em Uberaba, MG. 20+ anos de prática clínica.',
+  url: 'https://drcelsopintinha.com.br',
+  telephone: '+5534992206100',
+  location: [
+    {
+      '@type': 'MedicalClinic',
+      name: 'Hospital São Marcos',
+      address: {
+        '@type': 'PostalAddress',
+        streetAddress: 'Av. Santos Dumont, 2191 - Vila Santa Maria',
+        addressLocality: 'Uberaba',
+        addressRegion: 'MG',
+        postalCode: '38050-400',
+        addressCountry: 'BR',
+      },
+    },
+    {
+      '@type': 'MedicalClinic',
+      name: 'Instituto Sem Dor',
+      address: {
+        '@type': 'PostalAddress',
+        streetAddress: 'Av. Santos Dumont, 2335 - Vila Santa Maria',
+        addressLocality: 'Uberaba',
+        addressRegion: 'MG',
+        postalCode: '38050-400',
+        addressCountry: 'BR',
+      },
+    },
+  ],
+};
+---
+
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <link rel="canonical" href={canonicalURL} />
+
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content={canonicalURL} />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:image" content={new URL(ogImage, Astro.site)} />
+    <meta property="og:locale" content="pt_BR" />
+    <meta name="twitter:card" content="summary_large_image" />
+
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <ViewTransitions />
+
+    <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
+  </head>
+  <body>
+    <a
+      href="#main-content"
+      class="sr-only focus:not-sr-only focus:absolute focus:z-50 focus:top-4 focus:left-4 focus:px-4 focus:py-2 focus:bg-primary focus:text-white focus:rounded"
+    >
+      Pular para o conteúdo
+    </a>
+    <Header currentPath={Astro.url.pathname} />
+    <main id="main-content">
+      <slot />
+    </main>
+    <Footer />
+    <WhatsAppButton
+      phone="5534992206100"
+      message="Olá! Gostaria de agendar uma consulta com o Dr. Celso Pintinha."
+      variant="floating"
+    />
+    <CookieConsent />
+  </body>
+</html>

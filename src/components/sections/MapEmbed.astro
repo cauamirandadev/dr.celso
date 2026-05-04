@@ -1,0 +1,43 @@
+---
+interface Props {
+  src: string;
+  title: string;
+  class?: string;
+}
+
+const { src, title, class: className } = Astro.props;
+
+const isPending = !src || src.includes('[PENDENTE') || src.startsWith('#pendente');
+---
+
+<div class:list={['relative w-full aspect-video overflow-hidden rounded-card border border-dashed border-border', className]}>
+  {isPending ? (
+    <div class="absolute inset-0 bg-surface-elev flex flex-col items-center justify-center gap-3">
+      <svg
+        class="w-8 h-8 text-accent"
+        xmlns="http://www.w3.org/2000/svg"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        stroke-width="1.5"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+        aria-hidden="true"
+      >
+        <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z" />
+        <circle cx="12" cy="10" r="3" />
+      </svg>
+      <p class="text-xs text-cream font-medium">{title}</p>
+      <p class="text-xs text-cream-muted">Mapa carregado quando os endereços forem confirmados</p>
+    </div>
+  ) : (
+    <iframe
+      src={src}
+      title={title}
+      class="absolute inset-0 w-full h-full border-0"
+      loading="lazy"
+      referrerpolicy="no-referrer-when-downgrade"
+      allowfullscreen
+    />
+  )}
+</div>

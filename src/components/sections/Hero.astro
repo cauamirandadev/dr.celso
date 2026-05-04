@@ -1,0 +1,62 @@
+---
+import WhatsAppButton from '../ui/WhatsAppButton.astro';
+import CTAButton from '../ui/CTAButton.astro';
+---
+
+<section
+  class="relative min-h-[80vh] flex items-center overflow-hidden bg-primary"
+  aria-label="Apresentação do Dr. Celso Pintinha"
+>
+  <!-- Banner background -->
+  <div class="absolute inset-0" aria-hidden="true">
+    <img
+      src="/assets/doctor/banner-home.jpeg"
+      alt=""
+      class="w-full h-full object-cover object-[60%_20%]"
+      fetchpriority="high"
+      width="1920"
+      height="1080"
+    />
+    <!-- Overlay gradiente: escuro à esquerda (texto), transparente à direita (rosto do doutor) -->
+    <div class="absolute inset-0 bg-gradient-to-r from-primary/90 via-primary/50 to-transparent"></div>
+  </div>
+
+  <!-- Conteúdo -->
+  <div class="relative z-10 container py-24 md:py-32">
+    <div class="max-w-xl flex flex-col gap-6">
+
+      <p class="text-accent text-xs font-display font-semibold uppercase tracking-[0.2em]">
+        Ortopedia e Traumatologia · Uberaba, MG
+      </p>
+
+      <h1 class="font-display font-bold text-display-xl text-cream heading-display leading-tight">
+        Dr. Celso Pintinha
+      </h1>
+
+      <p class="text-cream/80 text-lg leading-relaxed">
+        20 anos de prática clínica. Cirurgia de joelho, prótese de quadril, artroscopia.
+      </p>
+
+      <p class="text-sm text-cream/60">
+        Atendimento no <span class="font-semibold text-cream/80">Hospital São Marcos</span>
+        {' '}e <span class="font-semibold text-cream/80">Instituto Sem Dor</span>.
+      </p>
+
+      <div class="flex flex-col sm:flex-row gap-3 pt-2">
+        <WhatsAppButton
+          phone="5534992206100"
+          message="Olá! Gostaria de agendar uma consulta com o Dr. Celso Pintinha."
+          variant="inline"
+          label="Agendar via WhatsApp"
+        />
+        <CTAButton
+          href="https://www.doctoralia.com.br/celso-pintinha/ortopedista-traumatologista/uberaba#address-id=1381834&is-online-only=false&filters%5Bspecializations%5D%5B%5D=67"
+          label="Ver no Doctoralia"
+          variant="secondary"
+          external={true}
+        />
+      </div>
+
+    </div>
+  </div>
+</section>

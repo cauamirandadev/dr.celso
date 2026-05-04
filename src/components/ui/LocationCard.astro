@@ -1,0 +1,166 @@
+---
+interface Props {
+  name: string;
+  address: string;
+  schedule: string[];
+  phone: string;
+  mapsUrl: string;
+  imageUrl?: string;
+  whatsappPhone?: string;
+  whatsappMessage?: string;
+  theme?: 'dark' | 'light';
+}
+
+const {
+  name,
+  address,
+  schedule,
+  phone,
+  mapsUrl,
+  imageUrl,
+  whatsappPhone,
+  whatsappMessage = 'Olá! Gostaria de agendar uma consulta com o Dr. Celso Pintinha.',
+  theme = 'dark',
+} = Astro.props;
+
+const isLight = theme === 'light';
+const whatsappHref = whatsappPhone
+  ? `https://wa.me/${whatsappPhone}?text=${encodeURIComponent(whatsappMessage)}`
+  : null;
+---
+
+<article class:list={[
+  'flex flex-col rounded-card border overflow-hidden transition-all duration-200 ease-out hover:-translate-y-1 hover:border-accent hover:shadow-card-hover',
+  isLight ? 'bg-light-surface border-border-light' : 'bg-primary-light border-border',
+]}>
+
+  {imageUrl && (
+    <div class="aspect-[16/9] overflow-hidden">
+      <img
+        src={imageUrl}
+        alt={`Fachada ${name}`}
+        class="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
+        loading="lazy"
+        width="640"
+        height="360"
+      />
+    </div>
+  )}
+
+  <div class="flex flex-col gap-6 p-6 md:p-8">
+    <header>
+      <h3 class:list={['font-display font-bold text-display-md heading-display', isLight ? 'text-on-light' : 'text-cream']}>
+        {name}
+      </h3>
+    </header>
+
+    <div class="flex flex-col gap-4">
+      <div class="flex gap-3">
+        <svg
+          class="w-5 h-5 text-accent flex-shrink-0 mt-0.5"
+          xmlns="http://www.w3.org/2000/svg"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          aria-hidden="true"
+        >
+          <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z" />
+          <circle cx="12" cy="10" r="3" />
+        </svg>
+        <address class:list={['not-italic text-sm leading-relaxed', isLight ? 'text-on-light-muted' : 'text-cream-muted']}>
+          {address}
+        </address>
+      </div>
+
+      <div class="flex gap-3">
+        <svg
+          class="w-5 h-5 text-accent flex-shrink-0 mt-0.5"
+          xmlns="http://www.w3.org/2000/svg"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          aria-hidden="true"
+        >
+          <circle cx="12" cy="12" r="10" />
+          <polyline points="12 6 12 12 16 14" />
+        </svg>
+        <ul class="list-none flex flex-col gap-1" aria-label="Horários de atendimento">
+          {schedule.map((item) => (
+            <li class:list={['text-sm', isLight ? 'text-on-light-muted' : 'text-cream-muted']}>{item}</li>
+          ))}
+        </ul>
+      </div>
+
+      <div class="flex gap-3">
+        <svg
+          class="w-5 h-5 text-accent flex-shrink-0 mt-0.5"
+          xmlns="http://www.w3.org/2000/svg"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          aria-hidden="true"
+        >
+          <path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.88 9.71a19.79 19.79 0 01-3.07-8.67A2 2 0 012.79 1h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.91 8.76a16 16 0 006.29 6.29l1.13-1.13a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z" />
+        </svg>
+        <a
+          href={`tel:${phone.replace(/\D/g, '')}`}
+          class:list={[
+            'text-sm transition-colors duration-200 focus-visible:outline focus-visible:outline-2 focus-visible:outline-accent focus-visible:outline-offset-2 rounded',
+            isLight
+              ? 'text-on-light-muted hover:text-on-light'
+              : 'text-cream-muted hover:text-cream',
+          ]}
+        >
+          {phone}
+        </a>
+      </div>
+    </div>
+
+    <footer class="flex flex-col sm:flex-row gap-3 mt-auto pt-2">
+      <a
+        href={mapsUrl}
+        target="_blank"
+        rel="noopener noreferrer"
+        class="flex-1 inline-flex items-center justify-center gap-2 px-4 py-2.5 border border-accent text-accent text-sm font-medium rounded-button hover:bg-accent/10 active:bg-accent/20 transition-all duration-200 focus-visible:outline focus-visible:outline-2 focus-visible:outline-accent focus-visible:outline-offset-2"
+      >
+        <svg
+          class="w-4 h-4 flex-shrink-0"
+          xmlns="http://www.w3.org/2000/svg"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          aria-hidden="true"
+        >
+          <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z" />
+          <circle cx="12" cy="10" r="3" />
+        </svg>
+        Ver no mapa
+        <span class="sr-only">(abre no Google Maps)</span>
+      </a>
+
+      {whatsappHref && (
+        <a
+          href={whatsappHref}
+          target="_blank"
+          rel="noopener noreferrer"
+          class="flex-1 inline-flex items-center justify-center gap-2 px-4 py-2.5 bg-[#25D366] text-white text-sm font-medium rounded-button hover:bg-[#1ebe5d] active:scale-[0.98] transition-all duration-200 focus-visible:outline focus-visible:outline-2 focus-visible:outline-[#25D366] focus-visible:outline-offset-2"
+        >
+          Agendar
+          <span class="sr-only">via WhatsApp (abre em nova aba)</span>
+        </a>
+      )}
+    </footer>
+  </div>
+</article>
