@@ -115,19 +115,34 @@ function isActive(href: string): boolean {
 </header>
 
 <script>
-  const toggle = document.getElementById('menu-toggle') as HTMLButtonElement | null;
-  const menu = document.getElementById('mobile-menu');
+  function initMobileMenu() {
+    const oldToggle = document.getElementById('menu-toggle');
+    const menu = document.getElementById('mobile-menu');
 
-  toggle?.addEventListener('click', () => {
-    const isHidden = menu?.hasAttribute('hidden');
-    if (isHidden) {
-      menu?.removeAttribute('hidden');
-      toggle.setAttribute('aria-expanded', 'true');
-      toggle.setAttribute('aria-label', 'Fechar menu de navegação');
-    } else {
-      menu?.setAttribute('hidden', '');
-      toggle.setAttribute('aria-expanded', 'false');
-      toggle.setAttribute('aria-label', 'Abrir menu de navegação');
-    }
-  });
+    if (!oldToggle || !menu) return;
+
+    // Clone para remover listeners antigos (evita duplicação em View Transitions)
+    const toggle = oldToggle.cloneNode(true) as HTMLButtonElement;
+    oldToggle.parentNode?.replaceChild(toggle, oldToggle);
+
+    // Garantir menu fechado ao navegar
+    menu.setAttribute('hidden', '');
+    toggle.setAttribute('aria-expanded', 'false');
+    toggle.setAttribute('aria-label', 'Abrir menu de navegação');
+
+    toggle.addEventListener('click', () => {
+      const isHidden = menu.hasAttribute('hidden');
+      if (isHidden) {
+        menu.removeAttribute('hidden');
+        toggle.setAttribute('aria-expanded', 'true');
+        toggle.setAttribute('aria-label', 'Fechar menu de navegação');
+      } else {
+        menu.setAttribute('hidden', '');
+        toggle.setAttribute('aria-expanded', 'false');
+        toggle.setAttribute('aria-label', 'Abrir menu de navegação');
+      }
+    });
+  }
+
+  document.addEventListener('astro:page-load', initMobileMenu);
 </script>

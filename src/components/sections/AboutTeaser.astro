@@ -15,8 +15,8 @@ import CTAButton from '../ui/CTAButton.astro';
       loading="lazy"
     />
     <!-- Overlay gradiente: transparente à esquerda (mostra o médico), escuro à direita (background do texto) -->
-    <!-- Mobile: gradiente de cima pra baixo -->
-    <div class="absolute inset-0 bg-gradient-to-b from-transparent via-primary/40 to-primary/95 md:bg-gradient-to-r md:from-transparent md:via-primary/40 md:to-primary/95"></div>
+    <!-- Mobile: gradiente vertical mais escuro / Desktop: gradiente horizontal -->
+    <div class="absolute inset-0 bg-gradient-to-b from-primary/60 via-primary/80 to-primary/95 md:bg-gradient-to-r md:from-transparent md:via-primary/40 md:to-primary/95"></div>
   </div>
 
   <!-- Conteúdo (texto à direita) -->
