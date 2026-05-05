@@ -11,11 +11,15 @@ import SectionDivider from '../components/ui/SectionDivider.astro';
   title="Dr. Celso Pintinha — Ortopedista em Uberaba"
   description="Ortopedista e traumatologista em Uberaba. Formado pela UFPR, membro da SBOT. Atendimento no Ambulatório do Hospital São Marcos e Instituto Sem Dor."
 >
+  <!-- 1. Hero — fundo azul (banner) -->
   <Hero />
   <SectionDivider variant="dark-to-light" accent={true} />
+  <!-- 2. Onde Atendemos — fundo creme -->
   <LocationsPreview />
-  <SectionDivider variant="dark-to-light" accent={true} />
+  <SectionDivider variant="light-to-dark" accent={true} />
+  <!-- 3. Sobre — fundo azul (banner) -->
   <AboutTeaser />
-  <SectionDivider variant="dark-to-dark" accent={true} />
+  <SectionDivider variant="dark-to-light" accent={true} />
+  <!-- 4. Especialidades — fundo creme -->
   <SpecialtiesPreview />
 </BaseLayout>
