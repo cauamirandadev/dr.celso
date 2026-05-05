@@ -6,6 +6,10 @@ interface Props {
   phone: string;
   mapsUrl: string;
   imageUrl?: string;
+  secondaryImageSrc?: string;
+  secondaryImageAlt?: string;
+  primaryCaption?: string;
+  secondaryCaption?: string;
   whatsappPhone?: string;
   whatsappMessage?: string;
   theme?: 'dark' | 'light';
@@ -18,8 +22,12 @@ const {
   phone,
   mapsUrl,
   imageUrl,
+  secondaryImageSrc,
+  secondaryImageAlt = '',
+  primaryCaption,
+  secondaryCaption,
   whatsappPhone,
-  whatsappMessage = 'Olá! Gostaria de agendar uma consulta com o Dr. Celso Pintinha.',
+  whatsappMessage = 'Olá, gostaria de marcar uma consulta com o Dr. Celso Pintinha.',
   theme = 'dark',
 } = Astro.props;
 
@@ -27,6 +35,8 @@ const isLight = theme === 'light';
 const whatsappHref = whatsappPhone
   ? `https://wa.me/${whatsappPhone}?text=${encodeURIComponent(whatsappMessage)}`
   : null;
+
+const hasDualImages = imageUrl && secondaryImageSrc;
 ---
 
 <article class:list={[
@@ -34,7 +44,54 @@ const whatsappHref = whatsappPhone
   isLight ? 'bg-light-surface border-border-light' : 'bg-primary-light border-border',
 ]}>
 
-  {imageUrl && (
+  {/* Dual image layout */}
+  {hasDualImages && (
+    <div class="grid grid-cols-1 sm:grid-cols-2">
+      <figure class="flex flex-col">
+        <div class="aspect-[16/9] overflow-hidden">
+          <img
+            src={imageUrl}
+            alt={`Fachada ${name}`}
+            class="w-full h-full object-cover"
+            loading="lazy"
+            width="640"
+            height="360"
+          />
+        </div>
+        {primaryCaption && (
+          <figcaption class:list={[
+            'text-xs text-center py-2 px-3',
+            isLight ? 'text-on-light-muted bg-light-surface' : 'text-cream-muted bg-primary-light',
+          ]}>
+            {primaryCaption}
+          </figcaption>
+        )}
+      </figure>
+      <figure class="flex flex-col">
+        <div class="aspect-[16/9] overflow-hidden">
+          <img
+            src={secondaryImageSrc}
+            alt={secondaryImageAlt}
+            class="w-full h-full object-cover"
+            loading="lazy"
+            width="640"
+            height="360"
+          />
+        </div>
+        {secondaryCaption && (
+          <figcaption class:list={[
+            'text-xs text-center py-2 px-3',
+            isLight ? 'text-on-light-muted bg-light-surface' : 'text-cream-muted bg-primary-light',
+          ]}>
+            {secondaryCaption}
+          </figcaption>
+        )}
+      </figure>
+    </div>
+  )}
+
+  {/* Single image layout (default) */}
+  {imageUrl && !secondaryImageSrc && (
     <div class="aspect-[16/9] overflow-hidden">
       <img
         src={imageUrl}

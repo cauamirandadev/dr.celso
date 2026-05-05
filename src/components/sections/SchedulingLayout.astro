@@ -7,25 +7,30 @@ import FadeIn from '../ui/FadeIn.astro';
 
 const locations = [
   {
-    name: 'Hospital São Marcos',
-    address: 'Av. Santos Dumont, 2191 - Vila Santa Maria, Uberaba - MG, 38050-400',
+    name: 'Ambulatório do Hospital São Marcos',
+    address: 'Rua Acre, 468 · Santa Maria · Uberaba - MG',
     schedule: [
-      '[PENDENTE — ex: Segunda e Quarta, 14h às 18h]',
-      '[PENDENTE — ex: Sexta, 08h às 12h]',
+      'Segundas, quartas e sextas-feiras',
+      'Manhã e tarde',
     ],
-    phone: '[PENDENTE — telefone fixo]',
-    mapsUrl: 'https://maps.google.com/?q=Av.+Santos+Dumont,+2191,+Vila+Santa+Maria,+Uberaba,+MG',
+    phone: '(34) 2103-6161',
+    mapsUrl: 'https://maps.google.com/?q=Rua+Acre,+468,+Santa+Maria,+Uberaba,+MG',
     imageUrl: '/assets/locations/hospital-sao-marcos.jpeg',
+    secondaryImageSrc: '/assets/doctor/ambulatorio-sao-marcos.jpeg',
+    secondaryImageAlt: 'Ambulatório do Hospital São Marcos — Rua Acre, 468',
+    primaryCaption: 'Entrada principal do Hospital São Marcos',
+    secondaryCaption: 'Ambulatório — Rua Acre, 468',
     whatsappPhone: '5534992206100',
   },
   {
     name: 'Instituto Sem Dor',
-    address: 'Av. Santos Dumont, 2335 - Vila Santa Maria, Uberaba - MG, 38050-400',
+    address: 'Av. Santos Dumont, 2335 · Santa Maria · Uberaba - MG',
     schedule: [
-      '[PENDENTE — ex: Terça e Quinta, 08h às 12h]',
+      'Terças e quintas-feiras',
+      'À tarde',
     ],
-    phone: '[PENDENTE — telefone fixo]',
-    mapsUrl: 'https://maps.google.com/?q=Av.+Santos+Dumont,+2335,+Vila+Santa+Maria,+Uberaba,+MG',
+    phone: '(34) 3313-6900',
+    mapsUrl: 'https://maps.google.com/?q=Av.+Santos+Dumont,+2335,+Santa+Maria,+Uberaba,+MG',
     imageUrl: '/assets/locations/instituto-sem-dor.webp',
     whatsappPhone: '5534992206100',
   },
@@ -40,7 +45,7 @@ const locations = [
 
       <SectionTitle
         title="Onde Atendemos"
-        subtitle="Dois locais em Uberaba. Agendamento centralizado pelo WhatsApp da secretária."
+        subtitle="Dois locais em Uberaba. Agendamento centralizado pelo WhatsApp."
         theme="light"
       />
 
@@ -53,6 +58,10 @@ const locations = [
             phone={loc.phone}
             mapsUrl={loc.mapsUrl}
             imageUrl={loc.imageUrl}
+            secondaryImageSrc={loc.secondaryImageSrc}
+            secondaryImageAlt={loc.secondaryImageAlt}
+            primaryCaption={loc.primaryCaption}
+            secondaryCaption={loc.secondaryCaption}
             whatsappPhone={loc.whatsappPhone}
             theme="light"
           />
@@ -60,7 +69,7 @@ const locations = [
       </FadeIn>
 
       <p class="text-sm text-on-light-muted text-center">
-        Os dois locais ficam na mesma avenida, a poucos passos um do outro.
+        O ambulatório fica na Rua Acre, 468, na mesma quadra do Hospital São Marcos.
       </p>
 
     </div>
@@ -82,12 +91,16 @@ const locations = [
           <div class="flex flex-col gap-1">
             <h3 class="font-body text-base font-semibold text-cream">WhatsApp</h3>
             <p class="text-sm text-cream-muted leading-relaxed">
-              Mande mensagem para a secretária. Ela agenda nos dois locais.
+              Mande mensagem para agendar. A secretária confirma nos dois locais.
+            </p>
+            <p class="text-xs text-cream-muted/70 mt-1">
+              Agendamento: <strong class="text-cream/80">(34) 9 9220-6100</strong><br />
+              Secretária: <strong class="text-cream/80">(34) 9 9339-7177</strong>
             </p>
           </div>
           <WhatsAppButton
             phone="5534992206100"
-            message="Olá! Gostaria de agendar uma consulta com o Dr. Celso Pintinha."
+            message="Olá, gostaria de marcar uma consulta com o Dr. Celso Pintinha."
             variant="inline"
             label="Abrir WhatsApp"
           />
@@ -115,7 +128,7 @@ const locations = [
       <div class="pt-2 border-t border-border max-w-2xl">
         <p class="text-sm text-cream-muted">
           <strong class="font-medium text-cream">Convênios:</strong>{' '}
-          [PENDENTE — lista de convênios atendidos]
+          Atendimento particular, Unimed e outros convênios.
         </p>
       </div>
 

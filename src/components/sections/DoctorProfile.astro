@@ -2,11 +2,11 @@
 import CTAButton from '../ui/CTAButton.astro';
 
 const credentials = [
-  { label: 'CRM', value: 'CRM-MG 33.379' },
-  { label: 'Formação', value: '[PENDENTE — graduação e instituição]' },
-  { label: 'Residência', value: '[PENDENTE — residência em ortopedia e traumatologia]' },
-  { label: 'Sociedades', value: 'SBOT — Sociedade Brasileira de Ortopedia e Traumatologia' },
-  { label: 'Experiência', value: 'Mais de 20 anos de prática clínica e cirúrgica em Uberaba, MG' },
+  { label: 'CRM', value: 'CRM-MG [PENDENTE]' },
+  { label: 'Formação', value: 'Medicina pela Universidade Federal do Paraná (UFPR), 1983–1989' },
+  { label: 'Residência', value: 'Ortopedia e Traumatologia pelo Hospital de Clínicas da UFPR, 1990–1992' },
+  { label: 'Sociedades', value: 'SBOT — Sociedade Brasileira de Ortopedia e Traumatologia (desde 1993)' },
+  { label: 'Locais', value: 'Ambulatório do Hospital São Marcos e Instituto Sem Dor — Uberaba, MG' },
 ];
 ---
 
@@ -41,15 +41,10 @@ const credentials = [
 
       <div class="flex flex-col gap-4 text-cream/80 text-base leading-relaxed">
         <p>
-          [PENDENTE — biografia profissional curta a confirmar com o cliente]
+          Dr. Celso Pintinha é médico ortopedista e traumatologista, formado em Medicina pela Universidade Federal do Paraná (UFPR), com residência em Ortopedia e Traumatologia pelo Hospital de Clínicas da UFPR.
         </p>
         <p>
-          Atende atualmente no <strong class="font-medium text-cream">Hospital São Marcos</strong>
-          e no <strong class="font-medium text-cream">Instituto Sem Dor</strong>.
-          Agendamentos pelo WhatsApp da secretária.
-        </p>
-        <p>
-          [PENDENTE — parágrafo adicional de trajetória ou especialização]
+          Membro da Sociedade Brasileira de Ortopedia e Traumatologia desde 1993, atende em Uberaba no Ambulatório do Hospital São Marcos e no Instituto Sem Dor, com foco em uma comunicação simples para que o paciente saiba onde encontrá-lo e como marcar consulta.
         </p>
       </div>
 
@@ -76,10 +71,26 @@ const credentials = [
   </div>
 </section>
 
-<!-- Fotos de evidência: SBOT + Cirurgia -->
+<!-- Fotos: Social + SBOT + Cirurgia -->
 <section class="bg-primary py-12 md:py-16" aria-label="Registros profissionais">
   <div class="container">
-    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 md:gap-6">
+    <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 md:gap-6">
+
+      <figure class="flex flex-col gap-2">
+        <div class="relative rounded-card overflow-hidden aspect-[3/4]">
+          <img
+            src="/assets/doctor/dr-celso-social.jpeg"
+            alt="Dr. Celso Pintinha"
+            class="absolute inset-0 w-full h-full object-cover object-top"
+            loading="lazy"
+            width="640"
+            height="853"
+          />
+        </div>
+        <figcaption class="text-xs text-cream/50 text-center px-2">
+          Dr. Celso Pintinha
+        </figcaption>
+      </figure>
 
       <figure class="flex flex-col gap-2">
         <div class="relative rounded-card overflow-hidden aspect-[3/4]">

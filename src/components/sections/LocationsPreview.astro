@@ -6,20 +6,30 @@ import FadeIn from '../ui/FadeIn.astro';
 
 const locations = [
   {
-    name: 'Hospital São Marcos',
-    address: 'Av. Santos Dumont, 2191 - Vila Santa Maria, Uberaba - MG, 38050-400',
-    schedule: ['[PENDENTE — dias e horários de atendimento]'],
-    phone: '[PENDENTE — telefone fixo]',
-    mapsUrl: 'https://maps.google.com/?q=Av.+Santos+Dumont,+2191,+Vila+Santa+Maria,+Uberaba,+MG',
+    name: 'Ambulatório do Hospital São Marcos',
+    address: 'Rua Acre, 468 · Santa Maria · Uberaba - MG',
+    schedule: [
+      'Segundas, quartas e sextas-feiras',
+      'Manhã e tarde',
+    ],
+    phone: '(34) 2103-6161',
+    mapsUrl: 'https://maps.google.com/?q=Rua+Acre,+468,+Santa+Maria,+Uberaba,+MG',
     imageUrl: '/assets/locations/hospital-sao-marcos.jpeg',
+    secondaryImageSrc: '/assets/doctor/ambulatorio-sao-marcos.jpeg',
+    secondaryImageAlt: 'Ambulatório do Hospital São Marcos — Rua Acre, 468',
+    primaryCaption: 'Entrada principal do Hospital São Marcos',
+    secondaryCaption: 'Ambulatório — Rua Acre, 468',
     whatsappPhone: '5534992206100',
   },
   {
     name: 'Instituto Sem Dor',
-    address: 'Av. Santos Dumont, 2335 - Vila Santa Maria, Uberaba - MG, 38050-400',
-    schedule: ['[PENDENTE — dias e horários de atendimento]'],
-    phone: '[PENDENTE — telefone fixo]',
-    mapsUrl: 'https://maps.google.com/?q=Av.+Santos+Dumont,+2335,+Vila+Santa+Maria,+Uberaba,+MG',
+    address: 'Av. Santos Dumont, 2335 · Santa Maria · Uberaba - MG',
+    schedule: [
+      'Terças e quintas-feiras',
+      'À tarde',
+    ],
+    phone: '(34) 3313-6900',
+    mapsUrl: 'https://maps.google.com/?q=Av.+Santos+Dumont,+2335,+Santa+Maria,+Uberaba,+MG',
     imageUrl: '/assets/locations/instituto-sem-dor.webp',
     whatsappPhone: '5534992206100',
   },
@@ -46,6 +56,10 @@ const locations = [
           phone={loc.phone}
           mapsUrl={loc.mapsUrl}
           imageUrl={loc.imageUrl}
+          secondaryImageSrc={loc.secondaryImageSrc}
+          secondaryImageAlt={loc.secondaryImageAlt}
+          primaryCaption={loc.primaryCaption}
+          secondaryCaption={loc.secondaryCaption}
           whatsappPhone={loc.whatsappPhone}
         />
       ))}
