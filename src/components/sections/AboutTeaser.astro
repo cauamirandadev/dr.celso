@@ -23,14 +23,14 @@ import CTAButton from '../ui/CTAButton.astro';
   <div class="relative z-10 container py-16 md:py-24 flex items-end md:items-center min-h-[500px] md:min-h-[600px]">
     <div class="ml-auto max-w-md md:max-w-lg flex flex-col gap-6">
 
-      <div class="flex flex-col gap-2">
+      <div data-reveal class="flex flex-col gap-2">
         <p class="text-accent text-xs font-display font-semibold uppercase tracking-[0.2em]">Sobre</p>
         <h2 class="font-display font-bold text-display-md text-cream heading-display">
           Dr. Celso Pintinha
         </h2>
       </div>
 
-      <div class="flex flex-col gap-3 text-cream/80 text-base leading-relaxed">
+      <div data-reveal data-reveal-delay="150" class="flex flex-col gap-3 text-cream/80 text-base leading-relaxed">
         <p>
           Médico ortopedista e traumatologista, formado pela Universidade Federal do Paraná (UFPR), com residência em Ortopedia e Traumatologia pelo Hospital de Clínicas da UFPR.
         </p>
@@ -39,7 +39,7 @@ import CTAButton from '../ui/CTAButton.astro';
         </p>
       </div>
 
-      <ul class="flex flex-col gap-2" aria-label="Credenciais">
+      <ul data-reveal data-reveal-delay="250" class="flex flex-col gap-2" aria-label="Credenciais">
         <li class="flex items-center gap-2 text-sm text-cream/70">
           <svg
             class="w-4 h-4 text-accent flex-shrink-0"
@@ -74,7 +74,9 @@ import CTAButton from '../ui/CTAButton.astro';
         </li>
       </ul>
 
-      <CTAButton href="/sobre" label="Trajetória completa" variant="secondary" />
+      <div data-reveal data-reveal-delay="350">
+        <CTAButton href="/sobre" label="Trajetória completa" variant="secondary" />
+      </div>
 
     </div>
   </div>

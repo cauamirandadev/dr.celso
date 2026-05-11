@@ -12,7 +12,7 @@ import CTAButton from '../ui/CTAButton.astro';
     <img
       src="/assets/doctor/banner-home.jpeg"
       alt=""
-      class="w-full h-full object-cover object-[60%_20%]"
+      class="hero-bg w-full h-full object-cover object-[60%_20%]"
       fetchpriority="high"
       width="1920"
       height="1080"
@@ -25,24 +25,24 @@ import CTAButton from '../ui/CTAButton.astro';
   <div class="relative z-10 container py-24 md:py-32">
     <div class="max-w-xl flex flex-col gap-6">
 
-      <p class="text-accent text-xs font-display font-semibold uppercase tracking-[0.2em]">
+      <p class="hero-eyebrow text-accent text-xs font-semibold uppercase tracking-[0.2em]">
         Ortopedia e Traumatologia · Uberaba, MG
       </p>
 
-      <h1 class="font-display font-bold text-display-xl text-cream heading-display leading-tight">
+      <h1 class="hero-title font-display font-bold text-display-xl text-cream heading-display leading-tight">
         Dr. Celso Pintinha
       </h1>
 
-      <p class="text-cream/80 text-lg leading-relaxed">
-        Ampla trajetória em ortopedia e traumatologia. Cirurgia de joelho, prótese de quadril, artroscopia.
+      <p class="hero-item-1 text-cream/80 text-lg leading-relaxed">
+        Cirurgia e prótese de joelho e quadril. Artroscopia e cirurgia ligamentar.
       </p>
 
-      <p class="text-sm text-cream/60">
+      <p class="hero-item-2 text-sm text-cream/60">
         Atendimento no <span class="font-semibold text-cream/80">Ambulatório do Hospital São Marcos</span>
         {' '}e <span class="font-semibold text-cream/80">Instituto Sem Dor</span>.
       </p>
 
-      <div class="flex flex-col sm:flex-row gap-3 pt-2">
+      <div class="hero-item-3 flex flex-col sm:flex-row gap-3 pt-2">
         <WhatsAppButton
           phone="5534992206100"
           message="Olá, gostaria de marcar uma consulta com o Dr. Celso Pintinha."
@@ -60,3 +60,79 @@ import CTAButton from '../ui/CTAButton.astro';
     </div>
   </div>
 </section>
+
+<style>
+  /* ── Imagem: zoom suave na entrada ── */
+  .hero-bg {
+    animation: heroBgScale 1.6s cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
+  }
+  @keyframes heroBgScale {
+    from { transform: scale(1.06); }
+    to   { transform: scale(1); }
+  }
+
+  /* ── Eyebrow: fade + expansão de espaçamento entre letras ── */
+  .hero-eyebrow {
+    animation: heroTrack 0.9s cubic-bezier(0.25, 0.46, 0.45, 0.94) 0.15s both;
+  }
+  @keyframes heroTrack {
+    from {
+      opacity: 0;
+      letter-spacing: 0.6em;
+    }
+    to {
+      opacity: 1;
+      letter-spacing: 0.2em;
+    }
+  }
+
+  /* ── Título: clip-path reveal de baixo para cima ── */
+  .hero-title {
+    animation: heroReveal 0.9s cubic-bezier(0.22, 1, 0.36, 1) 0.4s both;
+  }
+  @keyframes heroReveal {
+    from {
+      opacity: 0;
+      transform: translateY(36px);
+      clip-path: inset(0 0 100% 0);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+      clip-path: inset(0 0 0% 0);
+    }
+  }
+
+  /* ── Itens seguintes: fade up encadeado ── */
+  .hero-item-1 {
+    animation: heroFadeUp 0.7s cubic-bezier(0.22, 1, 0.36, 1) 0.65s both;
+  }
+  .hero-item-2 {
+    animation: heroFadeUp 0.7s cubic-bezier(0.22, 1, 0.36, 1) 0.82s both;
+  }
+  .hero-item-3 {
+    animation: heroFadeUp 0.7s cubic-bezier(0.22, 1, 0.36, 1) 1s both;
+  }
+  @keyframes heroFadeUp {
+    from {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  /* ── Respeita preferência de movimento reduzido ── */
+  @media (prefers-reduced-motion: reduce) {
+    .hero-bg,
+    .hero-eyebrow,
+    .hero-title,
+    .hero-item-1,
+    .hero-item-2,
+    .hero-item-3 {
+      animation: none;
+    }
+  }
+</style>

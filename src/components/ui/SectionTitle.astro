@@ -11,7 +11,7 @@ const { title, subtitle, align = 'left', as: Tag = 'h2', theme = 'dark' } = Astr
 const isLight = theme === 'light';
 ---
 
-<div class:list={['flex flex-col gap-3', align === 'center' && 'items-center text-center']}>
+<div data-reveal class:list={['flex flex-col gap-3', align === 'center' && 'items-center text-center']}>
   <div class="w-10 h-px bg-accent opacity-80" aria-hidden="true"></div>
   <Tag class:list={['font-display text-display-lg heading-display', isLight ? 'text-on-light' : 'text-cream']}>
     {title}

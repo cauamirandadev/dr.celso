@@ -95,5 +95,25 @@ const jsonLd = {
       variant="floating"
     />
     <CookieConsent />
+    <script>
+      function initReveal() {
+        const els = document.querySelectorAll<HTMLElement>('[data-reveal]:not(.revealed)');
+        if (!els.length) return;
+        const observer = new IntersectionObserver(
+          (entries) => {
+            entries.forEach((entry) => {
+              if (entry.isIntersecting) {
+                (entry.target as HTMLElement).classList.add('revealed');
+                observer.unobserve(entry.target);
+              }
+            });
+          },
+          { threshold: 0.08, rootMargin: '0px 0px -48px 0px' }
+        );
+        els.forEach((el) => observer.observe(el));
+      }
+      initReveal();
+      document.addEventListener('astro:page-load', initReveal);
+    </script>
   </body>
 </html>
